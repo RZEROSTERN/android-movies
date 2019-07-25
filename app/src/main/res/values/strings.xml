@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Android Movies</string>
-    <string name="title_activity_main_dashboard">MainDashboardActivity</string>
+    <string name="title_activity_main_dashboard">Android Movies</string>
+    <string name="tab_text_1">Popular</string>
+    <string name="tab_text_2">Top Rated</string>
+    <string name="tab_text_3">Upcoming</string>
+    <string name="tmdb_api_key">a979136a65c626c9cba54538a2c512a2</string>
+    <string name="tmdb_api_main_uri">https://api.themoviedb.org/3/movie/</string>
 </resources>

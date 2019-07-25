@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.rzerocorp.androidmovies">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity
+                android:name=".MainDashboardActivity"
+                android:label="@string/title_activity_main_dashboard"
+                android:theme="@style/AppThemeBar">
+        </activity>
         <activity
                 android:name=".MainActivity"
                 android:screenOrientation="portrait">
@@ -21,19 +28,3 @@
     </application>
 
 </manifest>
-
-<!--
-ALTER TABLE evamex_verification_acts ADD witness1_id varchar(100) NULL;
-ALTER TABLE evamex_verification_acts ADD witness_1_id_institution varchar(100) NULL;
-ALTER TABLE evamex_verification_acts ADD witness_1_id_number varchar(100) NULL;
-ALTER TABLE evamex_verification_acts ADD witness1_address varchar(255) NULL;
-ALTER TABLE evamex_verification_acts ADD witness2_id varchar(100) NULL;
-ALTER TABLE evamex_verification_acts ADD witness_2_id_institution varchar(100) NULL;
-ALTER TABLE evamex_verification_acts ADD witness_2_id_number varchar(100) NULL;
-ALTER TABLE evamex_verification_acts ADD witness2_address varchar(255) NULL;
-ALTER TABLE evamex_verification_acts ADD documental int NULL;
-ALTER TABLE evamex_verification_acts ADD visual int NULL;
-ALTER TABLE evamex_verification_acts ADD underground int NULL;
-ALTER TABLE evamex_verification_acts ADD superficial_confinated int NULL;
-ALTER TABLE evamex_verification_acts ADD superficial_non_confinated int NULL;
--->
