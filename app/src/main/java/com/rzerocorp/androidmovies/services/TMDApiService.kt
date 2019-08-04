@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.rzerocorp.androidmovies.R
+import com.rzerocorp.androidmovies.models.MovieDetailsItem
 import com.rzerocorp.androidmovies.models.responses.GenericResponse
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -28,6 +29,11 @@ interface TMDApiService {
     fun upcoming(@Query("api_key") apiKey: String,
                  @Query("language") language: String = "en-US",
                  @Query("page") page: Int = 1): Call<GenericResponse>
+
+    @GET("movie")
+    fun singleMovieDetails(@Query("movie_id") movie_id: Int, @Query("api_key") apiKey: String,
+                           @Query("language") language: String = "en-US",
+                           @Query("page") page: Int = 1): MovieDetailsItem
 
     companion object {
         fun create(context: Context): TMDApiService {

@@ -24,20 +24,14 @@ class PopularFragment: Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var items: ArrayList<MovieItem> = ArrayList()
 
-    private val tmdApiService by lazy {
-        TMDApiService.create(context!!)
-    }
+    private lateinit var tmdApiService: TMDApiService
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_popular, container, false)
 
-        recyclerView = view.findViewById(R.id.rv_popular) as RecyclerView
-        mAdapter = MoviesAdapter(items)
+        tmdApiService = TMDApiService.create(context!!)
 
-        val mLayoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = mLayoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = mAdapter
+        Log.d("Test", "Entered")
 
         tmdApiService.popular(context!!.getString(R.string.tmdb_api_key)).enqueue(object:Callback<GenericResponse> {
             override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
@@ -48,7 +42,14 @@ class PopularFragment: Fragment() {
             override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
                 var res: GenericResponse = response.body()!!
                 items = res.results
-                mAdapter.notifyDataSetChanged()
+
+                recyclerView = view.findViewById(R.id.rv_popular) as RecyclerView
+                mAdapter = MoviesAdapter(items)
+
+                val mLayoutManager = LinearLayoutManager(context)
+                recyclerView.layoutManager = mLayoutManager
+                recyclerView.itemAnimator = DefaultItemAnimator()
+                recyclerView.adapter = mAdapter
             }
         })
 

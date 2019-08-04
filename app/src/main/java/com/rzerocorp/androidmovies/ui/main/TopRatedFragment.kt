@@ -31,24 +31,25 @@ class TopRatedFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_top_rated, container, false)
 
-        recyclerView = view.findViewById(R.id.rv_top_rated) as RecyclerView
-        mAdapter = MoviesAdapter(items)
-
-        val mLayoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = mLayoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = mAdapter
+        Log.d("Test", "Entered")
 
         tmdApiService.topRated(context!!.getString(R.string.tmdb_api_key)).enqueue(object: Callback<GenericResponse> {
             override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
                 context!!.toast("Error al llamar la API")
-                Log.e("ERR", t.message!!)
+                Log.e("API ERROR", t.message!!)
             }
 
             override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
                 var res: GenericResponse = response.body()!!
                 items = res.results
-                mAdapter.notifyDataSetChanged()
+
+                recyclerView = view.findViewById(R.id.rv_top_rated) as RecyclerView
+                mAdapter = MoviesAdapter(items)
+
+                val mLayoutManager = LinearLayoutManager(context)
+                recyclerView.layoutManager = mLayoutManager
+                recyclerView.itemAnimator = DefaultItemAnimator()
+                recyclerView.adapter = mAdapter
             }
         })
 
