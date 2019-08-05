@@ -6,5 +6,6 @@
     <string name="tab_text_3">Upcoming</string>
     <string name="tmdb_api_key">a979136a65c626c9cba54538a2c512a2</string>
     <string name="tmdb_api_main_uri">https://api.themoviedb.org/3/movie/</string>
+    <string name="tmdb_img_main_uri">https://image.tmdb.org/t/p/w500</string>
     <string name="title_activity_single_movie">SingleMovieActivity</string>
 </resources>

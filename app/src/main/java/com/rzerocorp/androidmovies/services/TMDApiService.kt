@@ -3,6 +3,7 @@ package com.rzerocorp.androidmovies.services
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import com.google.gson.annotations.SerializedName
 import com.rzerocorp.androidmovies.R
 import com.rzerocorp.androidmovies.models.MovieDetailsItem
 import com.rzerocorp.androidmovies.models.responses.GenericResponse
@@ -12,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TMDApiService {
@@ -30,10 +32,11 @@ interface TMDApiService {
                  @Query("language") language: String = "en-US",
                  @Query("page") page: Int = 1): Call<GenericResponse>
 
-    @GET("movie")
-    fun singleMovieDetails(@Query("movie_id") movie_id: Int, @Query("api_key") apiKey: String,
+    @GET("{movie_id}")
+    @SerializedName("")
+    fun singleMovieDetails(@Path("movie_id") movie_id: Int, @Query("api_key") apiKey: String,
                            @Query("language") language: String = "en-US",
-                           @Query("page") page: Int = 1): MovieDetailsItem
+                           @Query("page") page: Int = 1): Call<MovieDetailsItem>
 
     companion object {
         fun create(context: Context): TMDApiService {
